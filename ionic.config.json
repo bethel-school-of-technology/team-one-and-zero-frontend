@@ -1,0 +1,7 @@
+{
+  "name": "PoP-client",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
