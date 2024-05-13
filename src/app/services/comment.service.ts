@@ -8,6 +8,7 @@ import { Comment } from '../models/comment'
 })
 export class CommentService {
   baseURL: string = "http://localhost:5167/api/comment";
+  tokenKey: string = "myCommentToken";
 
   constructor(private http: HttpClient) { }
 
@@ -20,14 +21,26 @@ export class CommentService {
   }
 
   createComment(newComment: Comment): Observable<Comment> {
-    return this.http.post<Comment>(this.baseURL, newComment);
+    let reqHeaders = {
+      Authorization: `Bearer ${localStorage.getItem(this.tokenKey)}`
+    }
+
+    return this.http.post<Comment>(this.baseURL, newComment, { headers: reqHeaders });
   }
 
   updateComment(newComment: Comment): Observable<Comment> {
-    return this.http.put<Comment>(`${this.baseURL}/${newComment.commentId}`, newComment);
+    let reqHeaders = {
+      Authorization: `Bearer ${localStorage.getItem(this.tokenKey)}`
+    }
+
+    return this.http.put<Comment>(`${this.baseURL}/${newComment.commentId}`, newComment, { headers: reqHeaders });
   }
 
   deleteComment(commentId: number): Observable<any> {
-    return this.http.delete<any>(`${this.baseURL}/${commentId}`);
+    let reqHeaders = {
+      Authorization: `Bearer ${localStorage.getItem(this.tokenKey)}`
+    }
+
+    return this.http.delete<any>(`${this.baseURL}/${commentId}`, { headers: reqHeaders });
   }
 }
