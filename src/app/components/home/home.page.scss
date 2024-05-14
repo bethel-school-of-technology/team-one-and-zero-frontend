@@ -25,3 +25,17 @@
 #container a {
   text-decoration: none;
 }
+ion-footer{
+  //need to change the height of the footer
+  //looks to small vertical wise
+}
+.songlist {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+ion-icon{
+  font-size: 80px;
+}
