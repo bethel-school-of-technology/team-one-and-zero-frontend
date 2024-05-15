@@ -12,19 +12,19 @@
   </ion-header>
 
   <ion-list>   
-    <form>
+    <form #form="ngForm" (ngSubmit)="onSubmit()">
       <ion-item class="formItem">
-        <ion-input type="text" label="Username" labelPlacement="floating" placeholder="Enter text"></ion-input>
+        <ion-input type="text" label="Username" labelPlacement="floating" placeholder="Enter text" name="username" [(ngModel)]="username"></ion-input>
       </ion-item>
   
       <ion-item class="formItem">
-        <ion-input type="password" label="Password" labelPlacement="floating" placeholder="Enter Password"></ion-input>
+        <ion-input type="password" label="Password" labelPlacement="floating" placeholder="Enter Password" name="password" [(ngModel)]="password"></ion-input>
       </ion-item>
   
       <div>
-        <ion-button class="formItem" shape="round">Login</ion-button>
+        <ion-button class="formItem" shape="round" type="submit">Login</ion-button>
         <br>
-        <a>Sign Up</a>
+        <a routerLink="/sign-up">Sign Up</a>
       </div>
   
     </form>
