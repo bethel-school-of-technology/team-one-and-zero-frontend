@@ -4,10 +4,41 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-text-center">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">sign-up</ion-title>
+      <ion-title size="large" class="ion-justify-content-center">Sign-Up</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-list>   
+    <form>
+      <ion-item class="formItem">
+        <ion-input type="text" label="Username" labelPlacement="floating" placeholder="Enter text"></ion-input>
+      </ion-item>
+
+      <ion-item class="formItem">
+        <ion-input type="password" label="Password" labelPlacement="floating" placeholder="Enter Password"></ion-input>
+      </ion-item>
+
+      <ion-item class="formItem">
+        <ion-input type="email" label="Email" labelPlacement="floating" placeholder="Enter Email"></ion-input>
+      </ion-item>
+
+      <ion-item class="formItem">
+        <ion-input type="date" label="Birthday" labelPlacement="floating" placeholder="Enter Date"></ion-input>
+      </ion-item>
+
+      <ion-item class="formItem">
+        <ion-textarea type="text" label="Description" labelPlacement="floating" placeholder="Describe yourself in relation to music"></ion-textarea>
+      </ion-item>
+
+  
+      <div>
+        <ion-button class="formItem" shape="round">Sign Up</ion-button>
+        <br>
+        <a routerLink="/login">Login</a>
+      </div>
+    </form>
+  </ion-list>
 </ion-content>
