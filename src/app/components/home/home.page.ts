@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -6,11 +6,25 @@ import { ApiService } from 'src/app/services/api.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
-  constructor(private api : ApiService) {
-    this.api.getSongs().subscribe(data=>{
+  searchStr!: string;
+  constructor(private api: ApiService) {
+
+  }
+
+  ngOnInit(): void {
+    this.getSongList()
+  }
+
+  getSongList() {
+    this.api.getSongs().subscribe(data => {
       console.log(data)
+    })
+    
     }
-  )}
-}
+    
+  }
+  
+
+
