@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>sign-up</ion-title>
+    <ion-title>Sign up</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -12,30 +15,30 @@
   </ion-header>
 
   <ion-list>   
-    <form>
+    <form #form="ngForm" (ngSubmit)="signUp()">
       <ion-item class="formItem">
-        <ion-input type="text" label="Username" labelPlacement="floating" placeholder="Enter text"></ion-input>
+        <ion-input type="text" label="Username" labelPlacement="floating" placeholder="Enter text" name="username" [(ngModel)]="newUser.username"></ion-input>
       </ion-item>
 
       <ion-item class="formItem">
-        <ion-input type="password" label="Password" labelPlacement="floating" placeholder="Enter Password"></ion-input>
+        <ion-input type="password" name="Password" label="Password" labelPlacement="floating" placeholder="Enter Password" [(ngModel)]="newUser.password"></ion-input>
       </ion-item>
 
       <ion-item class="formItem">
-        <ion-input type="email" label="Email" labelPlacement="floating" placeholder="Enter Email"></ion-input>
+        <ion-input type="email" label="Email" name="email"labelPlacement="floating" placeholder="Enter Email" [(ngModel)]="newUser.email"></ion-input>
       </ion-item>
 
       <ion-item class="formItem">
-        <ion-input type="date" label="Birthday" labelPlacement="floating" placeholder="Enter Date"></ion-input>
+        <ion-input type="date" label="Birthday" name="birthday"labelPlacement="floating" placeholder="Enter Date" [(ngModel)]="newUser.birthdate"></ion-input>
       </ion-item>
 
       <ion-item class="formItem">
-        <ion-textarea type="text" label="Description" labelPlacement="floating" placeholder="Describe yourself in relation to music"></ion-textarea>
+        <ion-textarea type="text" label="Description" name="description"  labelPlacement="floating" placeholder="Describe yourself in relation to music" [(ngModel)]="newUser.description"></ion-textarea>
       </ion-item>
 
   
       <div>
-        <ion-button class="formItem" shape="round">Sign Up</ion-button>
+        <ion-button class="formItem" shape="round" type="submit">Sign Up</ion-button>
         <br>
         <a routerLink="/login">Login</a>
       </div>
