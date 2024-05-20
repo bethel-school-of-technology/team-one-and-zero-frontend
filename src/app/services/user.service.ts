@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
-import { tap } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +24,13 @@ export class UserService {
       .pipe(tap((response: any) => {
         localStorage.setItem('myCommentToken', response);
       }));
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.baseURL);
+  }
+
+  getUserByUsername(username: string): Observable<User> {
+    return this.http.get<User>(`${this.baseURL}/${username}`);
   }
 }
