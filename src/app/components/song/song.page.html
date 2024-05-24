@@ -20,6 +20,9 @@
 
 </ion-content>
 
+<h2>Songs</h2>
+<div *ngFor="let comment of comments">#{{ comment.commentID }} {{ comment.description }}</div>
+
 <ion-footer>
   <ion-toolbar>
     <ion-textarea autoGrow rows="1" placeholder="What do you think of this song?" class="ion-text-center">
