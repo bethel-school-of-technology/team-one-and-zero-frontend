@@ -33,7 +33,7 @@ export class CommentService {
       Authorization: `Bearer ${localStorage.getItem(this.tokenKey)}`
     }
 
-    return this.http.put<Comment>(`${this.baseURL}/${newComment.commentId}`, newComment, { headers: reqHeaders });
+    return this.http.put<Comment>(`${this.baseURL}/${newComment.commentID}`, newComment, { headers: reqHeaders });
   }
 
   deleteComment(commentId: number): Observable<any> {
