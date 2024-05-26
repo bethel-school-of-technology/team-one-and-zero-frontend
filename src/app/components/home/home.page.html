@@ -6,28 +6,30 @@
 </ion-toolbar>
 
 <ion-content [fullscreen]="true">
-  <ion-searchbar animated="true" placeholder="Search Music" (keyup)="searchArtist()"
+  <ion-searchbar animated="true" placeholder="Search Music" (search)="searchArtist()"
     [(ngModel)]="searchStr"></ion-searchbar>
+  <ion-card>  
+      <p id="images"></p>
+    <ion-card-header>
+      <ion-card-title><span id="name"></span></ion-card-title>
+      <ion-card-subtitle><span id="artist"></span></ion-card-subtitle>
+    </ion-card-header>
 
-  <ul>
-    <li>Images: <span id="images"></span></li>
-    <li>Track Name: <span id="name"></span></li>
-    <li>Followers: <span id="followers"></span></li>
-  </ul>
-  <iframe style="border-radius:12px"
-    src="https://open.spotify.com/embed/track/6tNQ70jh4OwmPGpYy6R2o9?utm_source=generator" width="100%" height="352"
-    frameBorder="0" allowfullscreen=""
-    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <ion-card-content>
+      <span id="url"></span>
+    </ion-card-content>
+  </ion-card>
+  <div class="resetPage">
+     <ion-button type="reset" value="Search Another One!!" onclick="window.location.reload()" color="light">Search another one!!</ion-button>
+ 
+  </div>
 
 
   <div class="songlist">
     <ion-button (click)="getToken()">Get Token</ion-button>
-    <ion-button (click)="fetchProfile() ">Profile</ion-button>
+    <!-- <ion-button (click)="fetchProfile() ">Profile</ion-button>
     <ion-button (click)="saveToken()">Save Token</ion-button>
-    <ion-button (click)="refreshToken()">Refresh Token</ion-button>
-
-
-
+    <ion-button (click)="refreshToken()">Refresh Token</ion-button> -->
   </div>
 
 </ion-content>

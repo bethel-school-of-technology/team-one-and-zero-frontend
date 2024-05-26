@@ -137,13 +137,14 @@ export class ApiService {
 
   showTrack(track: any){
     document.getElementById("name")!.innerText = track.tracks.items[0].name;
-    // document.getElementById("songId")!.innerText = track.tracks.items[0].id;
-    // if(track.images){
-    //   const artistImage = new Image(200,200);
-    //   artistImage.src = track.artists.items[0].images.url;
-    //   document.getElementById("images")!.appendChild(artistImage);
-    // }
-    // document.getElementById("followers")!.innerText = track.artists.items[0].followers.total;
+    if(track.tracks.items[0].album.images[0].url){
+      const artistImage = new Image(200,200);
+      artistImage.src = track.tracks.items[0].album.images[0].url;
+      document.getElementById("images")!.appendChild(artistImage);
+    }
+    document.getElementById("artist")!.innerText = track.tracks.items[0].album.artists[0].name;
+    document.getElementById("url")!.innerText = track.tracks.items[0].external_urls.spotify;
+
   }
 
   async refreshToken() {

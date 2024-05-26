@@ -18,6 +18,7 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit(): void {
+    
 
   }
 
@@ -57,8 +58,7 @@ export class HomePage implements OnInit {
 
   searchArtist(){
     let songs = this.api.searchTrack(this.accessToken!, this.searchStr)
-    console.log(songs);
-    
+    console.log(songs); 
   }
 
   refreshToken(){
