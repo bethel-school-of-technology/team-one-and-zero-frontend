@@ -136,15 +136,17 @@ export class ApiService {
   }
 
   showTrack(track: any){
-    document.getElementById("name")!.innerText = track.tracks.items[0].name;
-    if(track.tracks.items[0].album.images[0].url){
-      const artistImage = new Image(200,200);
-      artistImage.src = track.tracks.items[0].album.images[0].url;
-      document.getElementById("images")!.appendChild(artistImage);
-    }
-    document.getElementById("artist")!.innerText = track.tracks.items[0].album.artists[0].name;
-    document.getElementById("url")!.innerText = track.tracks.items[0].external_urls.spotify;
+    let trackId = track.tracks.items[0].id;
+    var iframe = document.createElement("iframe");
+    iframe.src = "https://open.spotify.com/embed/track/" + trackId;
+    iframe.width = "100%";
+    iframe.height = "152";
+    iframe.allowFullscreen;
+    iframe.frameBorder = "0";
+    iframe.allow = "encrypted-media";
 
+    document.getElementById("songInfo")!.innerHTML = "";
+    document.getElementById("songInfo")!.appendChild(iframe);
   }
 
   async refreshToken() {
