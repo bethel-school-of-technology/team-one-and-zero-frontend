@@ -8,21 +8,8 @@
 <ion-content [fullscreen]="true">
   <ion-searchbar animated="true" placeholder="Search Music" (search)="searchArtist()"
     [(ngModel)]="searchStr"></ion-searchbar>
-  <ion-card>  
-      <p id="images"></p>
-    <ion-card-header>
-      <ion-card-title><span id="name"></span></ion-card-title>
-      <ion-card-subtitle><span id="artist"></span></ion-card-subtitle>
-    </ion-card-header>
 
-    <ion-card-content>
-      <span id="url"></span>
-    </ion-card-content>
-  </ion-card>
-  <div class="resetPage">
-     <ion-button type="reset" value="Search Another One!!" onclick="window.location.reload()" color="light">Search another one!!</ion-button>
- 
-  </div>
+  <div id="songInfo"></div>
 
 
   <div class="songlist">
