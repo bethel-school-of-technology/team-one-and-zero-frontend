@@ -25,16 +25,16 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size="12" style="display: flex; justify-content: center">
+      <ion-col size="12" size-md="2" style="display: flex; justify-content: center">
         <ion-avatar>
           <ion-img src="{{presentUser.profilePhoto}}"></ion-img>
           </ion-avatar>
       </ion-col>
-      <ion-col size="12" class="descWrapper">
+      <ion-col size="12" size-md="9.5" class="descWrapper">
         <h1 class="profileDesc">{{presentUser.username}}</h1>
         <ion-note>
           <p class="profileDesc birthdate">Born: {{presentUser.birthdate}}</p>
-          <h3  class="profileDesc">About</h3>
+          <h3 class="profileDesc">About</h3>
           <p  class="profileDesc">{{presentUser.description}}</p>
         </ion-note>
       </ion-col>
@@ -51,11 +51,11 @@
                   <h4>song</h4>
                 </ion-col>
 
-                <ion-col size="4">
+                <ion-col size="7">
                   <p>{{c.description}}</p>
                 </ion-col>
 
-                <ion-col size="3">
+                <ion-col size="2">
                   <p>{{c.postedAt}}</p>
                 </ion-col>
               </ion-row>
