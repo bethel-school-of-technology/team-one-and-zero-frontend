@@ -11,7 +11,8 @@ export class ApiService {
   clientId = '63e7847d41474394a5d392f60af109b0';
   redirectUri = 'http://localhost:8100/home';
   scope = 'user-read-private user-read-email';
-  genresArr: any = [];
+  // genresArr: any = [];
+  songsArr: any = [];
   authUrl = new URL("https://accounts.spotify.com/authorize")
   tokenUrl = new URL("https://accounts.spotify.com/api/token")
   public apiKey: string = '4aawyAB9vmqN3uQ7FjRGTy';
@@ -25,10 +26,10 @@ export class ApiService {
   currentToken = {
     get access_token() { return localStorage.getItem('access_token') || null },
     get refresh_token() { return localStorage.getItem('refresh_token') || null },
-    get expires_in(){ return localStorage.getItem('refresh_in') || null },
+    get expires_in() { return localStorage.getItem('refresh_in') || null },
     get expires() { return localStorage.getItem('expires') || null },
 
-    save: function (response: {access_token: string, refresh_token: string, expires_in: number}){
+    save: function (response: { access_token: string, refresh_token: string, expires_in: number }) {
       const { access_token, refresh_token, expires_in } = response;
       localStorage.setItem('access_token', access_token);
       localStorage.setItem('refresh_token', refresh_token);
@@ -104,49 +105,54 @@ export class ApiService {
     return await result.json();
   }
 
-  async searchTrack(token: string, item: string): Promise<any> {
-    const freshToken = localStorage.getItem('access_token');
-    const result = await fetch("https://api.spotify.com/v1/search?q=" + item + "&type=track&limit=10", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${freshToken}`
-      }
-    });
-    let track = await result.json();
-    localStorage.setItem("track", track);
-    this.showTrack(track)
-    return track;
-  }
+  // async searchTrack(token: string, item: string): Promise<any> {
+  //   const freshToken = localStorage.getItem('access_token');
+  //   const result = await fetch("https://api.spotify.com/v1/search?q=" + item + "&type=track&limit=10", {
+  //     method: "GET",
+  //     headers: {
+  //       Authorization: `Bearer ${freshToken}`
+  //     }
+  //   });
+  //   let track = await result.json();
+  //   this.songsArr.push(track);
+  //   console.log(this.songsArr)
+  //   localStorage.setItem("track", track);
+  //   this.showTrack(track)
+  //   return track;
+  // }
 
-  showTrack(track: any){
-    let trackId = track.tracks.items[0].id;
-    localStorage.setItem("songId", trackId)
-    var iframe = document.createElement("iframe");
-    
-    iframe.src = "https://open.spotify.com/embed/track/" + trackId;
-    iframe.width = "100%";
-    iframe.height = "352";
-    iframe.allowFullscreen;
-    iframe.frameBorder = "0";
-    iframe.allow = "encrypted-media";
+  // showTrack(track: any) {
+  //   for (let i = 0; i < this.songsArr.length; i++) {
+  //     let trackId = track.tracks.items[i].id;
+  //     localStorage.setItem("songId", trackId)
+  //     var iframe = document.createElement("iframe");
 
-    document.getElementById("songInfo")!.innerHTML = "";
-    document.getElementById("songInfo")!.appendChild(iframe);
-  }
+  //     iframe.src = "https://open.spotify.com/embed/track/" + trackId;
+  //     iframe.width = "100%";
+  //     iframe.height = "152";
+  //     iframe.allowFullscreen;
+  //     iframe.frameBorder = "0";
+  //     iframe.allow = "encrypted-media";
 
-  async getGenres(){
-    const freshToken = localStorage.getItem("access_token");
-    const result = await fetch("https://api.spotify.com/v1/browse/categories", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${freshToken}`
-      }
-    })
-    let genres = await result.json()
-    this.genresArr.push(genres)
-    console.log(this.genresArr)
-    return genres;
-  }
+  //     document.getElementById("songInfo")!.innerHTML = "";
+  //     document.getElementById("songInfo")!.appendChild(iframe);
+  //   }
+
+  // }
+
+  // async getGenres(){
+  //   const freshToken = localStorage.getItem("access_token");
+  //   const result = await fetch("https://api.spotify.com/v1/browse/categories", {
+  //     method: "GET",
+  //     headers: {
+  //       Authorization: `Bearer ${freshToken}`
+  //     }
+  //   })
+  //   let genres = await result.json()
+  //   this.genresArr.push(genres)
+  //   console.log(this.genresArr)
+  //   return genres;
+  // }
 
   async refreshToken() {
     const refreshToken = localStorage.getItem('refresh_token');
