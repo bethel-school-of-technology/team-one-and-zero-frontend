@@ -4,31 +4,13 @@
   </ion-buttons>
 </ion-toolbar>
 
-<!-- <ion-content [fullscreen]="true">
-  <ion-grid>
-    <ion-row>
-      <ion-col size-md="6" size-sm="12" size-xs="12">
-        <img src="{{presentUser.profilePhoto}}">
-      </ion-col>
-      <ion-col size-md="6" size-sm="12" size-xs="12">
-        <h2>User's name</h2>
-        <h5>User info</h5>
-        <p>Aliquam non ex nec leo feugiat cursus. Maecenas ultricies justo ut mi sollicitudin porttitor in vitae ante.
-          Mauris arcu lorem, eleifend in blandit id, aliquet id ex. Duis varius erat lectus, varius placerat tellus
-          tempus non. Integer a cursus nisi. Maecenas volutpat vestibulum tempus. Mauris eu tincidunt tellus, non
-          molestie lorem. Maecenas venenatis sodales venenatis. Maecenas scelerisque auctor justo sit amet sagittis.</p>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-content> -->
-
-<ion-content>
+<ion-content [fullscreen]="true">
   <ion-grid>
     <ion-row>
       <ion-col size="12" size-md="2" style="display: flex; justify-content: center">
-        <ion-avatar>
-          <ion-img src="{{presentUser.profilePhoto}}"></ion-img>
-          </ion-avatar>
+        <ion-avatar class="image">
+          <ion-img class="image" src="{{presentUser.profilePhoto}}"></ion-img>
+        </ion-avatar>
       </ion-col>
       <ion-col size="12" size-md="9.5" class="descWrapper">
         <h1 class="profileDesc">{{presentUser.username}}</h1>
