@@ -5,9 +5,9 @@ export class User {
     email?: string; 
     description?: string;
     birthdate?: string; 
-    profilePic?: any;
+    profilePic?: string;
     
-    constructor( userId?: string, username?: string, password?: string, email?: string, description?: string, birthdate?: string, profilePic?: any){
+    constructor( userId?: string, username?: string, password?: string, email?: string, description?: string, birthdate?: string, profilePic?: string){
         this.userId = userId;
         this.username = username;
         this.password = password;
