@@ -1,6 +1,6 @@
 <ion-toolbar>
-  <ion-buttons slot="end">
-    <ion-button (click)="loginWithSpotify()">Log in with Spotify</ion-button>
+  <ion-buttons slot="end" >
+    <ion-button *ngIf="!loggedIn"(click)="loginWithSpotify()">Log in with Spotify</ion-button>
     <ion-menu-button></ion-menu-button>
   </ion-buttons>
 </ion-toolbar>
@@ -9,14 +9,12 @@
   <ion-searchbar animated="true" placeholder="Search Music" (search)="searchArtist()"
     [(ngModel)]="searchStr"></ion-searchbar>
 
-  <div id="songInfo"></div>
-
 
   <div class="songlist">
     <ion-button (click)="getToken()">Get Token</ion-button>
     <!-- <ion-button (click)="fetchProfile() ">Profile</ion-button>
-    <ion-button (click)="saveToken()">Save Token</ion-button>
-    <ion-button (click)="refreshToken()">Refresh Token</ion-button> -->
+    <ion-button (click)="saveToken()">Save Token</ion-button>-->
+    <!-- <ion-button (click)="refreshToken()">Refresh Token</ion-button>  -->
   </div>
 
 </ion-content>
