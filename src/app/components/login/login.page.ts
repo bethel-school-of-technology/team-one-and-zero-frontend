@@ -16,17 +16,7 @@ export class LoginPage implements OnInit {
   constructor(private myUserService: UserService, private router: Router, private apiService: ApiService) { }
 
   ngOnInit() {
-    // if(this.loggedIn = true){
-    //   this.apiService.getToken().subscribe(
-    //     tokenData => {
-    //       localStorage.setItem('access_token', tokenData)
-    //       console.log('Access Token; ', tokenData.access_token);
-    //     },
-    //     error=> {
-    //       console.error('Error', error);
-    //     }
-    //   )
-    // }
+    
   }
 
   onSubmit() {
@@ -34,15 +24,13 @@ export class LoginPage implements OnInit {
       window.alert("User Logged in Successfully"); // May change this to a prompt
       this.router.navigate(['home']);
       this.loggedIn = true;
-      // this.apiService.getToken().subscribe(
-      //   tokenData => {
-      //     localStorage.setItem('access_token', tokenData)
-      //     console.log('Access Token; ', tokenData.access_token);
-      //   })
+
     }, error => {
       console.log('Error: ', error),
       window.alert('Unsuccessful Login'); // May change this to a prompt
-    })
+    })      
+    // this.apiService.generateRandomString();
+
   }
 
 }

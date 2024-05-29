@@ -9,8 +9,11 @@
   <ion-searchbar animated="true" placeholder="Search Music" (search)="searchArtist()"
     [(ngModel)]="searchStr"></ion-searchbar>
 
-  <div id="songInfo"></div>
-
+  <div id="songInfo" >
+  </div>
+<!-- <ion-button (click)="songDetails()" >
+Chat about this song!
+</ion-button> -->
 
   <div class="songlist">
     <ion-button (click)="getToken()">Get Token</ion-button>

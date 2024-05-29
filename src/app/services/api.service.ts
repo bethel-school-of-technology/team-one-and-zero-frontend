@@ -73,25 +73,6 @@ export class ApiService {
 
   async getToken(code: string) {
     let codeVerifier = localStorage.getItem('code_verifier');
-
-    // const payload = new URLSearchParams();
-    // payload.set('client_id', this.clientId);
-    // payload.set('grant_type', 'authorization_code');
-    // payload.set('code', code);
-    // payload.set('redirect_uri', this.redirectUri);
-    // payload.set('code_verifier', codeVerifier!);
-    // const requestOptions: RequestInit = {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/x-www-form-urlencoded'
-    //   },
-    //   body: payload.toString()
-    // };
-
-
-    // const response = await fetch(this.tokenUrl, requestOptions);
-    // const responseBody = await response.json();
-
     const payload = {
       method: 'POST',
       headers: {
@@ -140,7 +121,7 @@ export class ApiService {
     var iframe = document.createElement("iframe");
     iframe.src = "https://open.spotify.com/embed/track/" + trackId;
     iframe.width = "100%";
-    iframe.height = "152";
+    iframe.height = "352";
     iframe.allowFullscreen;
     iframe.frameBorder = "0";
     iframe.allow = "encrypted-media";
