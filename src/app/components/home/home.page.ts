@@ -11,6 +11,7 @@ export class HomePage implements OnInit {
   codeVerifier = localStorage.getItem('code_verifier');
   accessToken = localStorage.getItem('access_token')
   searchStr!: string;
+  songsArr: any = [];
   searched = false;
   loggedIn = false;
   urlParams = new URLSearchParams(window.location.search);
@@ -20,20 +21,20 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.api.getGenres()
+    // this.api.getGenres()
   }
 
   saveToken() {
     const code = this.route.snapshot.queryParams['code'];
     console.log(code);
     if (code) {
-     this.api.getToken(code).then(token => {
-      this.api.currentToken.save(token!);
+      this.api.getToken(code).then(token => {
+        this.api.currentToken.save(token!);
 
-      const updatedUrl = this.removeCodeFromUrl();
-      window.history.replaceState({}, document.title, updatedUrl)
-     })
-    } else{
+        const updatedUrl = this.removeCodeFromUrl();
+        window.history.replaceState({}, document.title, updatedUrl)
+      })
+    } else {
       this.api.generateRandomString()
     }
   }
@@ -46,7 +47,7 @@ export class HomePage implements OnInit {
 
   loginWithSpotify() {
     this.api.generateRandomString().then(this.getToken)
-    if(localStorage.getItem("access_token")){
+    if (localStorage.getItem("access_token")) {
       this.loggedIn = true;
     }
 
@@ -61,19 +62,49 @@ export class HomePage implements OnInit {
     console.log(profile);
   }
 
-  searchArtist(){
-    let songs = this.api.searchTrack(this.accessToken!, this.searchStr)
+  searchTracks() {
+    let songs = this.searchTrack(this.accessToken!, this.searchStr)
     this.searched = true;
-    this.navigateToSong()
-    console.log(localStorage.getItem("songId")); 
+    // this.navigateToSong()
+    console.log(localStorage.getItem("songId"));
   }
 
-  navigateToSong(){
+  navigateToSong() {
     this.router.navigate(['/song'])
   }
 
-  refreshToken(){
+  refreshToken() {
     this.api.refreshToken()
+  }
+
+  async searchTrack(token: string, item: string): Promise<any> {
+    const freshToken = localStorage.getItem('access_token');
+    const result = await fetch("https://api.spotify.com/v1/search?q=" + item + "&type=track&limit=10", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${freshToken}`
+      }
+    });
+    let track = await result.json();
+    this.songsArr.push(track);
+    console.log(this.songsArr)
+    localStorage.setItem("track", track);    
+    document.getElementById("songInfo")!.innerHTML = "";
+    // this.showTrack(track)
+    return track;
+  }
+
+  showTrack(track: any) {
+    // for (let i = 0; i < this.songsArr.length; i++) {
+    //   let trackId = track.tracks.items[0].id;
+    //   localStorage.setItem("songId", trackId)
+    //   var card = document.createElement("p");
+    //   card.title = track.tracks.items[0].name;
+
+    //   document.getElementById("songInfo")!.appendChild(card);
+    // }
+
+
   }
 
 }

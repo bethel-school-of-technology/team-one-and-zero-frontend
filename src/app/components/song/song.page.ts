@@ -24,6 +24,6 @@ export class SongPage implements OnInit {
   showTrack(){
     let track = localStorage.getItem("track")
     let id = localStorage.getItem("songId");
-    this.api.showTrack(track)
+    // this.api.showTrack(track)
   }
 }
