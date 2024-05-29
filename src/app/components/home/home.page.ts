@@ -61,7 +61,10 @@ export class HomePage implements OnInit {
     console.log(songs); 
   }
 
-  
+  // songDetails(){
+  //   let songId = this.route.snapshot.paramMap.get("id") ?? "";
+  //   console.log(songId)
+  // }
 
   refreshToken(){
     this.api.refreshToken()
