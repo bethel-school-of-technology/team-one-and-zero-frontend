@@ -18,6 +18,12 @@ export class SongPage implements OnInit {
     this.commentService.getAllComments().subscribe(allComments => {
       this.comments = allComments;
     });
+
   }
 
+  showTrack(){
+    let track = localStorage.getItem("track")
+    let id = localStorage.getItem("songId");
+    this.api.showTrack(track)
+  }
 }

@@ -3,21 +3,7 @@
 </ion-toolbar>
 
 <ion-content [scrollEvents]="true">
-  <ion-grid>
-    <ion-row>
-      <ion-col size-md="6" size-sm="12" size-xs="12">
-        <!--Pic for song pulled from Spotify API-->
-        <img
-          src="https://images.unsplash.com/photo-1619983081593-e2ba5b543168?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-      </ion-col>
-      <ion-col size-md="6" size-sm="12" size-xs="12">
-        <h2>Song name</h2>
-        <h5>Song info</h5>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-
+  <div id="songInfo"></div>
 </ion-content>
 
 <h2>Songs</h2>
@@ -28,9 +14,9 @@
     <ion-textarea autoGrow rows="1" placeholder="What do you think of this song?" class="ion-text-center">
     </ion-textarea>
     <ion-buttons slot="end">
-    <ion-fab-button size="small">
-        <ion-icon name="send-outline" ></ion-icon>
-    </ion-fab-button>
+      <ion-fab-button size="small">
+        <ion-icon name="send-outline"></ion-icon>
+      </ion-fab-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>

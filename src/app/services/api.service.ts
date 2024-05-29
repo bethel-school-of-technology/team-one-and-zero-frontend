@@ -1,7 +1,7 @@
 import { Injectable, input } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, generate, throwError } from 'rxjs';
-import { UrlSerializer } from '@angular/router';
+import { Router, UrlSerializer } from '@angular/router';
 import { Token } from '@angular/compiler';
 
 @Injectable({
@@ -11,10 +11,11 @@ export class ApiService {
   clientId = '63e7847d41474394a5d392f60af109b0';
   redirectUri = 'http://localhost:8100/home';
   scope = 'user-read-private user-read-email';
+  genresArr: any = [];
   authUrl = new URL("https://accounts.spotify.com/authorize")
   tokenUrl = new URL("https://accounts.spotify.com/api/token")
   public apiKey: string = '4aawyAB9vmqN3uQ7FjRGTy';
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient, private router: Router) { }
 
   // SPOTIFY     
   access_token: any = '';
@@ -112,13 +113,16 @@ export class ApiService {
       }
     });
     let track = await result.json();
+    localStorage.setItem("track", track);
     this.showTrack(track)
     return track;
   }
 
   showTrack(track: any){
     let trackId = track.tracks.items[0].id;
+    localStorage.setItem("songId", trackId)
     var iframe = document.createElement("iframe");
+    
     iframe.src = "https://open.spotify.com/embed/track/" + trackId;
     iframe.width = "100%";
     iframe.height = "352";
@@ -128,6 +132,20 @@ export class ApiService {
 
     document.getElementById("songInfo")!.innerHTML = "";
     document.getElementById("songInfo")!.appendChild(iframe);
+  }
+
+  async getGenres(){
+    const freshToken = localStorage.getItem("access_token");
+    const result = await fetch("https://api.spotify.com/v1/browse/categories", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${freshToken}`
+      }
+    })
+    let genres = await result.json()
+    this.genresArr.push(genres)
+    console.log(this.genresArr)
+    return genres;
   }
 
   async refreshToken() {
