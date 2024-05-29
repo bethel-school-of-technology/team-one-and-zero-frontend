@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/user';
+import { Comment } from 'src/app/models/comment';
 import { ApiService } from 'src/app/services/api.service';
+import { CommentService } from 'src/app/services/comment.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -13,15 +15,29 @@ export class ProfilePage implements OnInit {
 
   presentUser: User = new User;
 
+  userComments: Comment[] = [];
+
+  userName: string = "";
+
   // accessToken = localStorage.getItem('access_token');
 
-  constructor(private myUserService: UserService, private actRouter: ActivatedRoute) { }
+  constructor(private myUserService: UserService, private myCommentService: CommentService, private actRouter: ActivatedRoute) { }
 
   ngOnInit() {
-    const userName = this.actRouter.snapshot.paramMap.get("username") ?? "";
+    const name = this.actRouter.snapshot.paramMap.get("username") ?? "";
+    this.userName = name;
 
-    this.myUserService.getUserByUsername(userName).subscribe(response => {
+    this.myUserService.getUserByUsername(this.userName).subscribe(response => {
       this.presentUser = response;
     })
+
+    this.loadUserComments();
   }
+
+  loadUserComments() {
+    this.myCommentService.getCommentsByUsername(this.userName).subscribe(response => {
+      this.userComments = response;
+    })
+  }
+
 }
