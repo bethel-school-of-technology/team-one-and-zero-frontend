@@ -4,7 +4,7 @@ export class User {
     password?: string;
     email?: string; 
     description?: string;
-    birthdate?: string; 
+    birthdate?: string;
     
     constructor( userId?: string, username?: string, password?: string, email?: string, description?: string, birthdate?: string){
         this.userId = userId;
