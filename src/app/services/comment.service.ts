@@ -16,6 +16,10 @@ export class CommentService {
     return this.http.get<Comment[]>(this.baseURL);
   }
 
+  getCommentsByUsername(username: string): Observable<Comment[]> {
+    return this.http.get<Comment[]>(`${this.baseURL}/${username}`)
+  }
+
   getComment(commentId: number): Observable<Comment> {
     return this.http.get<Comment>(`${this.baseURL}/${commentId}`)
   }
