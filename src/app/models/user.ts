@@ -4,12 +4,16 @@ export class User {
     password?: string;
     email?: string; 
     description?: string;
+    birthdate?: string; 
+    profilePic?: string;
     
-    constructor( userId?: string, username?: string, password?: string, email?: string, description?: string){
+    constructor( userId?: string, username?: string, password?: string, email?: string, description?: string, birthdate?: string, profilePic?: string){
         this.userId = userId;
         this.username = username;
         this.password = password;
         this.email = email;
         this.description = description;
+        this.birthdate = birthdate;
+        this.profilePic = profilePic;
     }
 }
