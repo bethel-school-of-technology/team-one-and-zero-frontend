@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { Comment } from 'src/app/models/comment';
-import { ApiService } from 'src/app/services/api.service';
 import { CommentService } from 'src/app/services/comment.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -18,8 +17,6 @@ export class ProfilePage implements OnInit {
   userComments: Comment[] = [];
 
   userName: string = "";
-
-  // accessToken = localStorage.getItem('access_token');
 
   constructor(private myUserService: UserService, private myCommentService: CommentService, private actRouter: ActivatedRoute) { }
 
