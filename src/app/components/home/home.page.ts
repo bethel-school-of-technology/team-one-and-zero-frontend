@@ -46,7 +46,7 @@ export class HomePage implements OnInit {
   }
 
   loginWithSpotify() {
-    this.api.generateRandomString().then(this.getToken)
+    this.api.generateRandomString().then(this.getToken()!)
     if (localStorage.getItem("access_token")) {
       this.loggedIn = true;
     }
@@ -85,28 +85,12 @@ export class HomePage implements OnInit {
         Authorization: `Bearer ${freshToken}`
       }
     });
-    console.log(result);
+    if(result.status == 401){
+      window.alert("Please log in with Spotify")
+    }
     let track = await result.json();
-    console.log(track);
     this.songsArr = track.tracks.items;
-    console.log(this.songsArr)
     localStorage.setItem("track", track);    
-  
-    // this.showTrack(track)
     return track;
   }
-
-  showTrack(track: any) {
-    // for (let i = 0; i < this.songsArr.length; i++) {
-    //   let trackId = track.tracks.items[0].id;
-    //   localStorage.setItem("songId", trackId)
-    //   var card = document.createElement("p");
-    //   card.title = track.tracks.items[0].name;
-
-    //   document.getElementById("songInfo")!.appendChild(card);
-    // }
-
-
-  }
-
 }
