@@ -8,6 +8,7 @@ import { Observable, of, tap } from 'rxjs';
 })
 export class UserService {
   baseURL: string = "http://localhost:5167/api/user";
+  tokenKey: string = "myCommentToken";
 
   constructor(private http: HttpClient) { }
 
@@ -24,6 +25,14 @@ export class UserService {
       .pipe(tap((response: any) => {
         localStorage.setItem('myCommentToken', response);
       }));
+  }
+
+  getCurrentUser(): Observable<User> {
+    let reqHeaders = {
+      Authorization: `Bearer ${localStorage.getItem(this.tokenKey)}`
+    }
+
+    return this.http.get<User>(`${this.baseURL}/current`, { headers: reqHeaders });
   }
 
   getUsers(): Observable<User[]> {
