@@ -105,55 +105,6 @@ export class ApiService {
     return await result.json();
   }
 
-  // async searchTrack(token: string, item: string): Promise<any> {
-  //   const freshToken = localStorage.getItem('access_token');
-  //   const result = await fetch("https://api.spotify.com/v1/search?q=" + item + "&type=track&limit=10", {
-  //     method: "GET",
-  //     headers: {
-  //       Authorization: `Bearer ${freshToken}`
-  //     }
-  //   });
-  //   let track = await result.json();
-  //   this.songsArr.push(track);
-  //   console.log(this.songsArr)
-  //   localStorage.setItem("track", track);
-  //   this.showTrack(track)
-  //   return track;
-  // }
-
-  // showTrack(track: any) {
-  //   for (let i = 0; i < this.songsArr.length; i++) {
-  //     let trackId = track.tracks.items[i].id;
-  //     localStorage.setItem("songId", trackId)
-  //     var iframe = document.createElement("iframe");
-
-  //     iframe.src = "https://open.spotify.com/embed/track/" + trackId;
-  //     iframe.width = "100%";
-  //     iframe.height = "152";
-  //     iframe.allowFullscreen;
-  //     iframe.frameBorder = "0";
-  //     iframe.allow = "encrypted-media";
-
-  //     document.getElementById("songInfo")!.innerHTML = "";
-  //     document.getElementById("songInfo")!.appendChild(iframe);
-  //   }
-
-  // }
-
-  // async getGenres(){
-  //   const freshToken = localStorage.getItem("access_token");
-  //   const result = await fetch("https://api.spotify.com/v1/browse/categories", {
-  //     method: "GET",
-  //     headers: {
-  //       Authorization: `Bearer ${freshToken}`
-  //     }
-  //   })
-  //   let genres = await result.json()
-  //   this.genresArr.push(genres)
-  //   console.log(this.genresArr)
-  //   return genres;
-  // }
-
   async refreshToken() {
     const refreshToken = localStorage.getItem('refresh_token');
     const url = this.tokenUrl;

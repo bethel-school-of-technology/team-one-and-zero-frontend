@@ -1,9 +1,8 @@
 <ion-toolbar>
   <ion-buttons slot="end">
-    <ion-button *ngIf="!loggedIn" (click)="loginWithSpotify()">Log in with Spotify</ion-button>
-    <ion-button (click)="getToken()">Get Token</ion-button>
+    <ion-button *ngIf="loggedIn == true" (click)="loginWithSpotify()">Log in with Spotify</ion-button>
+    <!-- <ion-button (click)="getToken()">Get Token</ion-button> -->
     <ion-menu-button></ion-menu-button>
-
   </ion-buttons>
 </ion-toolbar>
 
@@ -11,9 +10,9 @@
   <ion-searchbar animated="true" placeholder="Search Music" (search)="searchTracks()"
     [(ngModel)]="searchStr"></ion-searchbar>
 
-  <div *ngFor="let song of songsArr" id="songInfo">
+  <div *ngFor="let song of songsArr" id="songInfo" style="display: inline-block;">
     <ion-card style="max-width: 500px;" (click)="navigateToSong()">
-      <img alt="Song cover" src="{{song.album.images[0].url}}" style="object-fit: contain;"/>
+      <img alt="Song cover" src="{{song.album.images[0].url}}" style="object-fit: contain; max-height: 400px;" />
       <ion-card-header>
         <ion-card-title>{{song.name}}</ion-card-title>
         <ion-card-subtitle>{{song.artists[0].name}}</ion-card-subtitle>
@@ -23,12 +22,4 @@
       </ion-card-content>
     </ion-card>
   </div>
-
-
-  <div class="songlist">
-    <!-- <ion-button (click)="fetchProfile() ">Profile</ion-button>
-    <ion-button (click)="saveToken()">Save Token</ion-button>-->
-    <!-- <ion-button (click)="refreshToken()">Refresh Token</ion-button>  -->
-  </div>
-
 </ion-content>
