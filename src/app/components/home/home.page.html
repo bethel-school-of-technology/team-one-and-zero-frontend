@@ -13,10 +13,10 @@
 
   <div *ngFor="let song of songsArr" id="songInfo">
     <ion-card style="max-width: 500px;" (click)="navigateToSong()">
-      <img alt="Song cover" src="{{song.tracks.items[0].album.images[0].url}}" style="object-fit: contain;"/>
+      <img alt="Song cover" src="{{song.album.images[0].url}}" style="object-fit: contain;"/>
       <ion-card-header>
-        <ion-card-title>{{song.tracks.items[0].name}}</ion-card-title>
-        <ion-card-subtitle>{{song.tracks.items[0].artists[0].name}}</ion-card-subtitle>
+        <ion-card-title>{{song.name}}</ion-card-title>
+        <ion-card-subtitle>{{song.artists[0].name}}</ion-card-subtitle>
       </ion-card-header>
 
       <ion-card-content>

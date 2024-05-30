@@ -85,11 +85,13 @@ export class HomePage implements OnInit {
         Authorization: `Bearer ${freshToken}`
       }
     });
+    console.log(result);
     let track = await result.json();
-    this.songsArr.push(track);
+    console.log(track);
+    this.songsArr = track.tracks.items;
     console.log(this.songsArr)
     localStorage.setItem("track", track);    
-    document.getElementById("songInfo")!.innerHTML = "";
+  
     // this.showTrack(track)
     return track;
   }
