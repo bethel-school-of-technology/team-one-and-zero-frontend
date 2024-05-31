@@ -46,7 +46,7 @@ export class HomePage implements OnInit {
   }
 
   loginWithSpotify() {
-    this.api.generateRandomString().then(this.getToken()!)
+    this.api.generateRandomString()
     if (localStorage.getItem("access_token")) {
       this.loggedIn = true;
     }
@@ -65,8 +65,6 @@ export class HomePage implements OnInit {
   searchTracks() {
     let songs = this.searchTrack(this.accessToken!, this.searchStr)
     this.searched = true;
-    // this.navigateToSong()
-    console.log(localStorage.getItem("songId"));
   }
 
   navigateToSong() {
