@@ -21,7 +21,6 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.api.getGenres()
   }
 
   saveToken() {
@@ -57,18 +56,15 @@ export class HomePage implements OnInit {
     this.api.getToken(this.code!);
   }
 
-  fetchProfile() {
-    let profile = this.api.fetchProfile(this.accessToken!)
-    console.log(profile);
-  }
-
   searchTracks() {
     let songs = this.searchTrack(this.accessToken!, this.searchStr)
     this.searched = true;
   }
 
-  navigateToSong() {
-    this.router.navigate(['/song'])
+  navigateToSongByID(id: any) {
+    let songID = id
+    console.log(localStorage.getItem("songID"))
+    this.router.navigate(['/song/', songID])
   }
 
   refreshToken() {
@@ -88,6 +84,7 @@ export class HomePage implements OnInit {
     }
     let track = await result.json();
     this.songsArr = track.tracks.items;
+    console.log(this.songsArr)
     localStorage.setItem("track", track);    
     return track;
   }

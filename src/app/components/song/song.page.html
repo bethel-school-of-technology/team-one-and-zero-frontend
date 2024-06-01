@@ -3,9 +3,8 @@
 </ion-toolbar>
 
 <ion-content [scrollEvents]="true">
-  <!-- <div id="songInfo"></div> -->
+<div id="songInfo"></div>
 </ion-content>
-
 <h2>Songs</h2>
 <div *ngFor="let comment of comments">#{{ comment.commentID }} {{ comment.description }}</div>
 
