@@ -13,13 +13,15 @@ export class LoginPage implements OnInit {
   username: string = '';
   password: string = '';
   loggedIn: boolean = false;
+  urlParams = new URLSearchParams(window.location.search);
+  code = this.urlParams.get('code');
   constructor(private myUserService: UserService, private router: Router, private apiService: ApiService) { }
 
   ngOnInit() {
     
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.myUserService.login(this.username, this.password).subscribe((response:any) => {
       window.alert("User Logged in Successfully"); // May change this to a prompt
       this.router.navigate(['home']);
@@ -28,9 +30,9 @@ export class LoginPage implements OnInit {
     }, error => {
       console.log('Error: ', error),
       window.alert('Unsuccessful Login'); // May change this to a prompt
-    })      
-    // this.apiService.generateRandomString();
-
+    })
+    await this.apiService.generateRandomString()
+    this.apiService.getToken(this.code!);
   }
 
 }

@@ -4,6 +4,9 @@
 
 <ion-content [scrollEvents]="true">
 <div id="songInfo"></div>
+<div  *ngIf="spotifyUrl">
+<iframe [src]="spotifyUrl" width="100%" height="352" allowfullscreen [frameBorder]="0" allow="encrypted-media"></iframe>
+</div>
 </ion-content>
 <h2>Songs</h2>
 <div *ngFor="let comment of comments">#{{ comment.commentID }} {{ comment.description }}</div>
