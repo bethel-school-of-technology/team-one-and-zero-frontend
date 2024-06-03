@@ -13,7 +13,6 @@ export class HomePage implements OnInit {
   searchStr!: string;
   songsArr: any = [];
   searched = false;
-  loggedIn = false;
   urlParams = new URLSearchParams(window.location.search);
   code = this.urlParams.get('code');
   constructor(private api: ApiService, private route: ActivatedRoute, private router: Router) {
@@ -46,9 +45,6 @@ export class HomePage implements OnInit {
 
   loginWithSpotify() {
     this.api.generateRandomString()
-    if (localStorage.getItem("access_token")) {
-      this.loggedIn = true;
-    }
 
   }
 
@@ -63,7 +59,6 @@ export class HomePage implements OnInit {
 
   navigateToSongByID(id: any) {
     let songID = id
-    console.log(localStorage.getItem("songID"))
     this.router.navigate(['/song/', songID])
   }
 
@@ -80,7 +75,7 @@ export class HomePage implements OnInit {
       }
     });
     if(result.status == 401){
-      window.alert("Please log in with Spotify")
+      window.alert("Please log in :)")
     }
     let track = await result.json();
     this.songsArr = track.tracks.items;
