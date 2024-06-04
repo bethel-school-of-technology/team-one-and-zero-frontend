@@ -10,6 +10,8 @@ export class UserService {
   baseURL: string = "http://localhost:5167/api/user";
   tokenKey: string = "myCommentToken";
 
+  loggedIn: boolean = false;
+
   constructor(private http: HttpClient) { }
 
   signUp(newUser: User) {
@@ -41,5 +43,19 @@ export class UserService {
 
   getUserByUsername(username: string): Observable<User> {
     return this.http.get<User>(`${this.baseURL}/${username}`);
+  }
+
+  isLoggedIn() {
+    if (!localStorage.getItem('myCommentToken')) {
+      this.loggedIn = false;
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  logout() {
+    localStorage.removeItem('myCommentToken');
+    this.loggedIn = false;
   }
 }

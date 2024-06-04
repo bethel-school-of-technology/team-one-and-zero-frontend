@@ -11,11 +11,24 @@ export class AppComponent implements OnInit{
 
   user: User = new User;
 
+  isAuthenticated: boolean = false;
+
   constructor(private myUserService: UserService) {}
 
   ngOnInit(): void {
     this.myUserService.getCurrentUser().subscribe(response => {
       this.user = response;
     })
+
+    this.isLoggedIn();
+
+  }
+
+  logout() {
+    this.myUserService.logout();
+  }
+
+  isLoggedIn() {
+    this.isAuthenticated = this.myUserService.isLoggedIn();
   }
 }
