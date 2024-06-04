@@ -75,7 +75,7 @@ export class HomePage implements OnInit {
       }
     });
     if(result.status == 401){
-      window.alert("Please log in :)")
+      window.alert("Please log in with Spotify")
     }
     let track = await result.json();
     this.songsArr = track.tracks.items;

@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { Observable, of, tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,8 @@ import { Observable, of, tap } from 'rxjs';
 export class UserService {
   baseURL: string = "http://localhost:5167/api/user";
   tokenKey: string = "myCommentToken";
-
-  constructor(private http: HttpClient) { }
+  logged: boolean = false;
+  constructor(private http: HttpClient, private router: Router) { }
 
   signUp(newUser: User) {
     return this.http.post(`${this.baseURL}/register`, newUser);
@@ -42,4 +43,19 @@ export class UserService {
   getUserByUsername(username: string): Observable<User> {
     return this.http.get<User>(`${this.baseURL}/${username}`);
   }
+
+  isLoggedIn() {
+    if (localStorage.getItem('myCommentToken')) {
+      this.logged = true;
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  logout(){
+    localStorage.removeItem('myCommentToken')
+    this.router.navigate(['/home'])
+  }
 }
+

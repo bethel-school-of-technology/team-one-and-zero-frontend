@@ -27,16 +27,4 @@ export class SongPage implements OnInit {
     }
   }
 
-  // showTrack(id: string){
-  //   var iframe = document.createElement("iframe");
-  //   iframe.src = "https://open.spotify.com/embed/track/" + id;
-  //   iframe.width = "100%";
-  //   iframe.height = "352";
-  //   iframe.allowFullscreen;
-  //   iframe.frameBorder = "0";
-  //   iframe.allow = "encrypted-media";
-
-  //   document.getElementById("songInfo")!.appendChild(iframe);
-  // }
-
 }
