@@ -20,6 +20,10 @@ export class CommentService {
     return this.http.get<Comment[]>(`${this.baseURL}/${username}`)
   }
 
+  getCommentsBySongID(songId: string): Observable<Comment[]> {
+    return this.http.get<Comment[]>(`${this.baseURL}/song/${songId}`)
+  }
+
   getComment(commentId: number): Observable<Comment> {
     return this.http.get<Comment>(`${this.baseURL}/${commentId}`)
   }
