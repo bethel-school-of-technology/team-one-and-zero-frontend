@@ -5,13 +5,13 @@
         <ion-menu-toggle>
           <ion-item routerLink="/home">Home</ion-item>
         </ion-menu-toggle>
-        <ion-menu-toggle>
+        <ion-menu-toggle *ngIf="isAuthenticated">
           <ion-item routerLink="/profile/{{ user.username }}">Profile</ion-item>
         </ion-menu-toggle>
-        <!-- <ion-menu-toggle>
-          <ion-item routerLink="/song">Song</ion-item>
-        </ion-menu-toggle> -->
-        <ion-menu-toggle>
+        <ion-menu-toggle *ngIf="isAuthenticated">
+          <ion-item (click)="this.logout()">Log out</ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle *ngIf="!isAuthenticated">
           <ion-item routerLink="/login">Log In</ion-item>
         </ion-menu-toggle>
       </ion-list>
