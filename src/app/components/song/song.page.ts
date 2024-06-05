@@ -26,5 +26,8 @@ export class SongPage implements OnInit {
       this.spotifyUrl = this.sanitizer.bypassSecurityTrustResourceUrl('https://open.spotify.com/embed/track/' + this.trackID)
     }
   }
-
+  
+  displayComment(){
+    alert(this.comments)
+  }
 }
