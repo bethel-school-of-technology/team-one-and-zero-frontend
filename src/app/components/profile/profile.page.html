@@ -7,24 +7,36 @@
 <ion-content [fullscreen]="true">
   <ion-grid>
     <ion-row>
-      <ion-col size="12" size-md="2" style="display: flex; justify-content: center">
+      <ion-col size="12" size-md="2" style="display: flex; justify-content: center" class="profilePic">
         <ion-avatar class="image">
           <ion-img class="image" src="{{presentUser.profilePhoto}}"></ion-img>
         </ion-avatar>
       </ion-col>
       <ion-col size="12" size-md="9.5" class="descWrapper">
-        <h1 class="profileDesc">{{presentUser.username}}</h1>
-        <ion-note>
-          <p class="profileDesc birthdate">Born: {{presentUser.birthdate}}</p>
-          <h3 class="profileDesc">About</h3>
-          <p  class="profileDesc">{{presentUser.description}}</p>
-        </ion-note>
+        <ion-item>
+          <h3 class="profileDesc">{{presentUser.username}} </h3>
+        </ion-item>
+        <ion-accordion-group>
+          <ion-accordion value="first">
+            <ion-item slot="header" color="light">
+              <ion-label>More about {{presentUser.username}}</ion-label>
+            </ion-item>
+            <div class="ion-padding" slot="content" >
+              <ion-item id="details">
+                <h4 class="profileDesc birthdate">Birthday: {{presentUser.birthdate}}</h4>
+              </ion-item>
+              <ion-item id="details2">
+                <h5 class="profileDesc">About: {{presentUser.description}}</h5>
+              </ion-item>
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>
-        <ion-list-header>Comments</ion-list-header>
+        <h1>Comments</h1>
         <ion-list>
           <ion-item *ngFor="let c of userComments">
             <ion-grid>
@@ -32,11 +44,9 @@
                 <ion-col size="3">
                   <h4>song</h4>
                 </ion-col>
-
                 <ion-col size="7">
                   <p>{{c.description}}</p>
                 </ion-col>
-
                 <ion-col size="2">
                   <p>{{c.postedAt}}</p>
                 </ion-col>
