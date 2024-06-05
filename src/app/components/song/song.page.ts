@@ -12,19 +12,22 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class SongPage implements OnInit {
 
-  public comments: Comment[] = []
+  comments: Comment[] = []
   public trackID: string | null = null;
   public spotifyUrl: SafeResourceUrl | null = null;
   constructor(private commentService: CommentService, private api: ApiService, private route: ActivatedRoute, private sanitizer: DomSanitizer ) { }
 
   ngOnInit() {
-    this.commentService.getAllComments().subscribe(allComments => {
+    this.commentService.getCommentsBySongID(this.trackID!).subscribe(allComments => {
       this.comments = allComments;
     });    
     this.trackID = this.route.snapshot.paramMap.get('id');
     if(this.trackID){
       this.spotifyUrl = this.sanitizer.bypassSecurityTrustResourceUrl('https://open.spotify.com/embed/track/' + this.trackID)
     }
-  }
 
+    
+      console.log(this.trackID);
+    // console.log(this.actRoute.snapshot);
+  }
 }
