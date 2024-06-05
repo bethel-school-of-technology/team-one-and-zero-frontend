@@ -26,12 +26,6 @@
   text-decoration: none;
 }
 
-.songlist {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
 .resetPage{
   display: flex;
   align-items: center;
@@ -44,4 +38,11 @@ ion-icon{
 ion-content{
 --background: url('../../../assets/homeImage2.png') no-repeat center center / cover;
 
+}
+
+ion-card{
+  border: 4px solid #EDF6F9;
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }
