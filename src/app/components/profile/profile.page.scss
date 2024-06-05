@@ -1,12 +1,12 @@
 ion-avatar {
-    width: 125px;
-    height: 125px;
+  width: 125px;
+  height: 125px;
 }
 
-.descWrapper {
-  // border: 5px solid #006D77;
-  // border-radius: 2cap;
-}
+// .descWrapper {
+//   border: 5px solid #006D77;
+//   border-radius: 2cap;
+// }
 
 .profileDesc {
   // padding-left: 2px;
@@ -17,19 +17,29 @@ ion-avatar {
   padding-bottom: 1;
 }
 
-ion-img{
+ion-img {
   border: 5px solid #EDF6F9;
 }
 
-.profilePic{
-  background-color: #83C5BE ;
+.profilePic {
+  background-color: #83C5BE;
   border-radius: 5px;
 }
 
-#details{
- color:#006D77;
+#details {
+  color: #006D77;
 }
 
-#details2{
+#details2 {
   color: #83C5BE;
+}
+
+h3,
+h4,
+h5 {
+
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+
 }
