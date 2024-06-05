@@ -32,10 +32,8 @@ export class AppComponent implements OnInit{
     if(localStorage.getItem('myCommentToken') === null){
       console.log('its been deleted')
     }
-    this.router.navigate(['/home'])
-    if(this.router.url == '/home'){
-      window.location.reload()
-    }
+    this.router.navigate(['/login']);
+  
   }
 
   isLoggedIn() {
