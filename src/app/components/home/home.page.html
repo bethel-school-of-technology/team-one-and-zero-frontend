@@ -6,11 +6,11 @@
   </ion-buttons>
 </ion-toolbar>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" id="homePage">
   <ion-searchbar animated="true" placeholder="Search Music" (search)="searchTracks()"
     [(ngModel)]="searchStr"></ion-searchbar>
-
-  <div *ngFor="let song of songsArr" id="songInfo" style="display: inline-block;">
+  
+  <div *ngFor="let song of songsArr" id="songInfo" style="display: inline-block;" >
     <ion-card style="max-width: 500px;" (click)="navigateToSongByID(song.id)">
       <img alt="Song cover" src="{{song.album.images[0].url}}" style="object-fit: contain; max-height: 400px;" />
       <ion-card-header>
@@ -23,3 +23,4 @@
     </ion-card>
   </div>
 </ion-content>
+
