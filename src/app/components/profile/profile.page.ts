@@ -60,6 +60,11 @@ export class ProfilePage implements OnInit {
 
   prompt(comment: Comment) {
     this.myCommentService.showPrompt('Hi', 'Edit comment:').subscribe(response => {
+      
+      if(response == null || response == "") {
+        return;
+      }
+      
       comment.description = response;
       this.editComment(comment);
     })

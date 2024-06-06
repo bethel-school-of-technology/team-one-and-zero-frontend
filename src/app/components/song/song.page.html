@@ -13,8 +13,19 @@
 <div *ngFor="let comment of comments">
   <p> {{ comment.username }}: {{ comment.description }}</p>
   <div *ngIf="comment.username == currentUser.username">
-    <ion-button (click)="prompt(comment)">Edit</ion-button>
-    <ion-button (click)="deleteComment(comment.commentID!)">Delete</ion-button>
+    <!-- <ion-button (click)="prompt(comment)">Edit</ion-button>
+    <ion-button (click)="deleteComment(comment.commentID!)">Delete</ion-button> -->
+    <!-- <ion-button (click)="prompt(comment)">Edit</ion-button>
+    <ion-button (click)="deleteComment(comment.commentID!)">Delete</ion-button> -->
+
+    <ion-button (click)="prompt(comment)" color="secondary">
+      <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+    </ion-button>
+    <ion-button (click)="deleteComment(comment.commentID!)" color="danger">
+      <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+    </ion-button>
+
+
   </div>
 </div>
 
