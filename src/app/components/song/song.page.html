@@ -9,19 +9,27 @@
 </div>
 </ion-content>
 <!-- -->
-<h2>Songs</h2>
+<h2>Comments</h2>
 <div *ngFor="let comment of comments">
-  <p> #{{ comment.commentID }} {{ comment.description }}</p>
+  <p> {{ comment.username }}: {{ comment.description }}</p>
 </div>
 
 <ion-footer>
-  <ion-toolbar>
-    <ion-input autoGrow rows="1" placeholder="What do you think of this song?" class="ion-text-center">
+  <!-- <ion-toolbar>
+    <ion-input autoGrow rows="1" placeholder="What do you think of this song?" class="ion-text-center" [(ngModel)]="comment.description">
     </ion-input>
     <ion-buttons slot="end">
-      <ion-fab-button size="small">
+      <ion-fab-button size="small" (ngSubmit)="createComment()">
         <ion-icon name="send-outline"></ion-icon>
       </ion-fab-button>
     </ion-buttons>
-  </ion-toolbar>
+  </ion-toolbar> -->
+
+  <form #form="ngForm" (ngSubmit)="createComment()">
+    <input placeholder="What do you think of the song" type="text" name="description" [(ngModel)]="comment.description">
+    <input [hidden]="true"  type="text" name="username" [(ngModel)]="comment.username">
+    <input [hidden]="true"  type="text" name="songId" [(ngModel)]="comment.songId">
+
+    <ion-button type="submit">Post</ion-button>
+  </form>
 </ion-footer>
