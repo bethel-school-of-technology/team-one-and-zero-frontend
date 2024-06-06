@@ -15,6 +15,8 @@ export class ProfilePage implements OnInit {
 
   presentUser: User = new User;
 
+  loggedInUser: User = new User;
+
   userComments: Comment[] = [];
 
   userName: string = "";
@@ -27,6 +29,10 @@ export class ProfilePage implements OnInit {
 
     this.myUserService.getUserByUsername(this.userName).subscribe(response => {
       this.presentUser = response;
+    })
+
+    this.myUserService.getCurrentUser().subscribe(response => {
+      this.loggedInUser = response;
     })
 
     this.loadUserComments();
