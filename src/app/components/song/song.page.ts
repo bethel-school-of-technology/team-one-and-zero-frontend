@@ -84,6 +84,11 @@ export class SongPage implements OnInit {
 
   prompt(comment: Comment) {
     this.commentService.showPrompt('Hi', 'Edit comment:').subscribe(response => {
+
+      if(response == null || response == "") {
+        return;
+      }
+
       comment.description = response;
       this.editComment(comment);
     })

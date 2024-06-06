@@ -50,9 +50,13 @@
                 <ion-col size="1">
                   <p>{{c.postedAt}}</p>
                 </ion-col>
-                <ion-col size="1" *ngIf="c.username == loggedInUser.username">
-                  <ion-button (click)="prompt(c)">Edit</ion-button>
-                  <ion-button (click)="deleteComment(c.commentID!)">Delete</ion-button>
+                <ion-col size="1" *ngIf="c.username == loggedInUser.username" class="ion-text-center">
+                  <ion-button (click)="prompt(c)" color="secondary">
+                    <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+                  </ion-button>
+                  <ion-button (click)="deleteComment(c.commentID!)" color="danger">
+                    <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                  </ion-button>
                 </ion-col>
               </ion-row>
             </ion-grid>
