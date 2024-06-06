@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CommentService } from 'src/app/services/comment.service';
 import { Comment } from 'src/app/models/comment';
 import { ApiService } from 'src/app/services/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-song',
@@ -11,23 +13,53 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrls: ['./song.page.scss'],
 })
 export class SongPage implements OnInit {
-
+  comment: Comment = new Comment;
   comments: Comment[] = []
   public trackID: string | null = null;
   public spotifyUrl: SafeResourceUrl | null = null;
-  constructor(private commentService: CommentService, private api: ApiService, private route: ActivatedRoute, private sanitizer: DomSanitizer ) { }
+  constructor(private commentService: CommentService, private api: ApiService, private route: ActivatedRoute, private sanitizer: DomSanitizer, private router: Router, private user: UserService ) { }
 
   ngOnInit() {
-    this.commentService.getCommentsBySongID(this.trackID!).subscribe(allComments => {
-      this.comments = allComments;
-    });    
+      
     this.trackID = this.route.snapshot.paramMap.get('id');
     if(this.trackID){
       this.spotifyUrl = this.sanitizer.bypassSecurityTrustResourceUrl('https://open.spotify.com/embed/track/' + this.trackID)
     }
-
     
+    this.currentUserAndId()
+    this.callComments()
+    this.getSongId()
       console.log(this.trackID);
-    // console.log(this.actRoute.snapshot);
   }
+
+  getSongId(){
+    let songId = this.route.snapshot.paramMap.get('id');
+    this.comment.songId = songId!
+  }
+
+  currentUserAndId(){
+    this.user.getCurrentUser().subscribe(response => {
+      this.comment.username = response.username;
+      console.log(response.username)
+    })
+
+  }
+  createComment(){
+    this.commentService.createComment(this.comment).subscribe(() => {
+      
+    }, error => {
+      console.log('Error:', error)
+      if(error.status === 401){
+        this.router.navigate(['login'])
+      }
+    })
+    window.location.reload()
+  }
+
+  callComments(){
+   this.commentService.getCommentsBySongID(this.trackID!).subscribe(allComments => {
+      this.comments = allComments;
+    });   
+  }
+  
 }
