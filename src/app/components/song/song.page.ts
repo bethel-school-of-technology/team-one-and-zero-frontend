@@ -15,6 +15,7 @@ import { User } from 'src/app/models/user';
 export class SongPage implements OnInit {
   comment: Comment = new Comment;
   comments: Comment[] = []
+  currentUser: User = new User;
   public trackID: string | null = null;
   public spotifyUrl: SafeResourceUrl | null = null;
   constructor(private commentService: CommentService, private api: ApiService, private route: ActivatedRoute, private sanitizer: DomSanitizer, private router: Router, private user: UserService ) { }
@@ -25,6 +26,10 @@ export class SongPage implements OnInit {
     if(this.trackID){
       this.spotifyUrl = this.sanitizer.bypassSecurityTrustResourceUrl('https://open.spotify.com/embed/track/' + this.trackID)
     }
+
+    this.user.getCurrentUser().subscribe(response => {
+      this.currentUser = response;
+    })
     
     this.currentUserAndId()
     this.callComments()
@@ -42,8 +47,9 @@ export class SongPage implements OnInit {
       this.comment.username = response.username;
       console.log(response.username)
     })
-
+    
   }
+
   createComment(){
     this.commentService.createComment(this.comment).subscribe(() => {
       
