@@ -47,8 +47,12 @@
                 <ion-col size="7">
                   <p>{{c.description}}</p>
                 </ion-col>
-                <ion-col size="2">
+                <ion-col size="1">
                   <p>{{c.postedAt}}</p>
+                </ion-col>
+                <ion-col size="1" *ngIf="c.username == loggedInUser.username">
+                  <ion-button (click)="prompt(c)">Edit</ion-button>
+                  <ion-button (click)="deleteComment(c.commentID!)">Delete</ion-button>
                 </ion-col>
               </ion-row>
             </ion-grid>

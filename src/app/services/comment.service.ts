@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, from, map } from 'rxjs';
 import { Comment } from '../models/comment'
+import { Dialog } from '@capacitor/dialog';
 
 @Injectable({
   providedIn: 'root'
@@ -51,4 +52,14 @@ export class CommentService {
 
     return this.http.delete<any>(`${this.baseURL}/${commentId}`, { headers: reqHeaders });
   }
+
+  showPrompt(title: string, message: string): Observable<string> {
+    return from(Dialog.prompt({
+      title,
+      message
+    })).pipe(map(result => {
+      return result.value;
+    }))
+  }
+  
 }
