@@ -38,4 +38,25 @@ export class ProfilePage implements OnInit {
     })
   }
 
+  editComment(comment: Comment) {
+    this.myCommentService.updateComment(comment).subscribe(() => {
+      console.log(comment);
+      this.loadUserComments();
+    })
+  }
+
+  deleteComment(id: number) {
+    this.myCommentService.deleteComment(id).subscribe(() => {
+      console.log("The comment has been deleted");
+      this.loadUserComments();
+    })
+  }
+
+  prompt(comment: Comment) {
+    this.myCommentService.showPrompt('Hi', 'Edit comment:').subscribe(response => {
+      comment.description = response;
+      this.editComment(comment);
+    })
+  }
+
 }

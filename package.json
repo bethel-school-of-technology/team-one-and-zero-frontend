@@ -25,6 +25,7 @@
     "@angular/router": "^17.0.2",
     "@capacitor/app": "6.0.0",
     "@capacitor/core": "6.0.0",
+    "@capacitor/dialog": "^6.0.0",
     "@capacitor/haptics": "6.0.0",
     "@capacitor/keyboard": "6.0.0",
     "@capacitor/status-bar": "6.0.0",
