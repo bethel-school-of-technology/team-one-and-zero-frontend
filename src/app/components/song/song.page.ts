@@ -67,5 +67,26 @@ export class SongPage implements OnInit {
       this.comments = allComments;
     });   
   }
+
+  editComment(comment: Comment) {
+    this.commentService.updateComment(comment).subscribe(() => {
+      console.log(comment);
+      this.callComments();
+    })
+  }
+
+  deleteComment(id: number) {
+    this.commentService.deleteComment(id).subscribe(() => {
+      console.log("The comment has been deleted");
+      this.callComments();
+    })
+  }
+
+  prompt(comment: Comment) {
+    this.commentService.showPrompt('Hi', 'Edit comment:').subscribe(response => {
+      comment.description = response;
+      this.editComment(comment);
+    })
+  }
   
 }

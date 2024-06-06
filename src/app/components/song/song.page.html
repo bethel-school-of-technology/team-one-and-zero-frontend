@@ -13,8 +13,8 @@
 <div *ngFor="let comment of comments">
   <p> {{ comment.username }}: {{ comment.description }}</p>
   <div *ngIf="comment.username == currentUser.username">
-    <ion-button>Edit</ion-button>
-    <ion-button>Delete</ion-button>
+    <ion-button (click)="prompt(comment)">Edit</ion-button>
+    <ion-button (click)="deleteComment(comment.commentID!)">Delete</ion-button>
   </div>
 </div>
 
