@@ -24,18 +24,30 @@ export class ProfilePage implements OnInit {
   constructor(private myUserService: UserService, private myCommentService: CommentService, private actRouter: ActivatedRoute) { }
 
   ngOnInit() {
-    const name = this.actRouter.snapshot.paramMap.get("username") ?? "";
-    this.userName = name;
-
-    this.myUserService.getUserByUsername(this.userName).subscribe(response => {
-      this.presentUser = response;
-    })
-
     this.myUserService.getCurrentUser().subscribe(response => {
-      this.loggedInUser = response;
+      this.loggedInUser = this.presentUser = response;
+      this.userName = this.presentUser.username ?? '';
+      console.log(this.loggedInUser);
+      console.log(this.presentUser);
+
+      const name = this.actRouter.snapshot.paramMap.get("username") ?? '';
+      console.log(name);
+  
+      if (name !== '') {
+        this.userName = name;
+        this.myUserService.getUserByUsername(name).subscribe(response => {
+          this.presentUser = response;
+        })
+      }
+  
+    
+      // this.userName = this.presentUser.username ?? '';
+
+      this.loadUserComments();
+
     })
 
-    this.loadUserComments();
+
   }
 
   loadUserComments() {

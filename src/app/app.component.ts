@@ -20,29 +20,35 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     this.myUserService.getCurrentUser().subscribe(response => {
       this.user = response;
+      this.myUserService.isLoggedInSubj.next(!!response.userId)
     })
 
-    this.isLoggedIn();
+    this.myUserService.isLoggedInSubj.subscribe(isLoggedIn => {
+      this.isAuthenticated = isLoggedIn;
+      this.isAuthenticated = isLoggedIn;
+    })
 
   }
 
 
   logout() {
+    this.myUserService.isLoggedInSubj.next(false);
     localStorage.removeItem('myCommentToken')
     if(localStorage.getItem('myCommentToken') === null){
       console.log('its been deleted')
     }
+    // window.location.href = '/login'
     this.router.navigate(['/login']);
   
   }
 
-  isLoggedIn() {
-    let token = localStorage.getItem('myCommentToken')
-    if(token === null){
-      this.isAuthenticated = false;
-    }else{
-      this.isAuthenticated = true;
-    }
-  }
+  // isLoggedIn() {
+  //   let token = localStorage.getItem('myCommentToken')
+  //   if(token === null){
+  //     this.isAuthenticated = false;
+  //   }else{
+  //     this.isAuthenticated = true;
+  //   }
+  // }
 
 }

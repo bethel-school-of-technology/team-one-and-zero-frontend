@@ -24,6 +24,10 @@ const routes: Routes = [
     loadChildren: () => import('./components/profile/profile.module').then( m => m.ProfilePageModule)
   },
   {
+    path: 'profile',
+    loadChildren: () => import('./components/profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
     path: 'song/:id',
     loadChildren: () => import('./components/song/song.module').then( m => m.SongPageModule)
   },
