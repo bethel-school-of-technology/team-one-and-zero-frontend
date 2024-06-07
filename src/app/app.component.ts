@@ -19,8 +19,12 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.myUserService.getCurrentUser().subscribe(response => {
-      this.user = response;
-      this.myUserService.isLoggedInSubj.next(!!response.userId)
+      if(response !== null) {
+        this.user = response;
+        this.myUserService.isLoggedInSubj.next(!response.userId)
+      } else {
+        return;
+      }
     })
 
     this.myUserService.isLoggedInSubj.subscribe(isLoggedIn => {
