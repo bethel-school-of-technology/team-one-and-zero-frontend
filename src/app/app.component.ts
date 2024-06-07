@@ -41,18 +41,9 @@ export class AppComponent implements OnInit{
     if(localStorage.getItem('myCommentToken') === null){
       console.log('its been deleted')
     }
-    // window.location.href = '/login'
+
     this.router.navigate(['/login']);
   
   }
-
-  // isLoggedIn() {
-  //   let token = localStorage.getItem('myCommentToken')
-  //   if(token === null){
-  //     this.isAuthenticated = false;
-  //   }else{
-  //     this.isAuthenticated = true;
-  //   }
-  // }
 
 }

@@ -24,15 +24,12 @@ export class LoginPage implements OnInit {
   onSubmit() {
     this.myUserService.login(this.username, this.password).subscribe((response: any) => {
       window.alert("Successful")
-      // window.location.href = '/home';
       this.router.navigate(['/home']);
       this.loggedIn = true;
     }, error => {
       console.log('Error: ', error),
-        window.alert('Unsuccessful Login'); // May change this to a prompt
+        window.alert('Unsuccessful Login');
     })
-    // await this.apiService.generateRandomString()
-    // this.apiService.getToken(this.code!);
   }
 
 }

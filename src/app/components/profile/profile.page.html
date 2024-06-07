@@ -12,7 +12,7 @@
           <ion-img class="image" src="{{presentUser.profilePhoto}}"></ion-img>
         </ion-avatar>
       </ion-col>
-      <ion-col size="12" size-md="9.5" class="descWrapper">
+      <ion-col size="12" size-md="9.5">
         <ion-item>
           <h3 class="profileDesc">{{presentUser.username}} </h3>
         </ion-item>
@@ -49,10 +49,7 @@
                 <ion-col size="7">
                   <p>{{c.description}}</p>
                 </ion-col>
-                <ion-col size="1">
-                  <p>{{c.postedAt}}</p>
-                </ion-col>
-                <ion-col size="1" *ngIf="c.username == loggedInUser.username" class="ion-text-center">
+                <ion-col size="1" size-sm="2" *ngIf="c.username == loggedInUser.username" class="ion-text-center">
                   <ion-button (click)="prompt(c)" color="secondary">
                     <ion-icon slot="icon-only" name="create-outline"></ion-icon>
                   </ion-button>
