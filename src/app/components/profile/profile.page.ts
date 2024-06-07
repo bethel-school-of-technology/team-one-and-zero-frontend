@@ -39,9 +39,6 @@ export class ProfilePage implements OnInit {
           this.presentUser = response;
         })
       }
-  
-    
-      // this.userName = this.presentUser.username ?? '';
 
       this.loadUserComments();
 
