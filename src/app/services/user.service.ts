@@ -48,18 +48,5 @@ export class UserService {
     return this.http.get<User>(`${this.baseURL}/${username}`);
   }
 
-  isLoggedIn() {
-    if (localStorage.getItem('myCommentToken')) {
-      this.logged = true;
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  logout(){
-    localStorage.removeItem('myCommentToken')
-    this.router.navigate(['/home'])
-  }
 }
 
