@@ -12,6 +12,9 @@
 <h2>Comments</h2>
 <div *ngFor="let comment of comments">
   <p id="comment"> {{ comment.username }}: {{ comment.description }}</p>
+  <ion-button routerLink="/profile/{{comment.username}}" color="darkblue">
+    <ion-icon name="person-outline"></ion-icon>
+  </ion-button>
   <div *ngIf="comment.username == currentUser.username">
     <!-- <ion-button (click)="prompt(comment)">Edit</ion-button>
     <ion-button (click)="deleteComment(comment.commentID!)">Delete</ion-button> -->
