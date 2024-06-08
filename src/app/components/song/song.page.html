@@ -3,12 +3,10 @@
 </ion-toolbar>
 
 <ion-content [scrollEvents]="true">
-<!-- <div ></div> -->
 <div  *ngIf="spotifyUrl" id="songInfo">
 <iframe [src]="spotifyUrl" width="100%" height="352" allowfullscreen [frameBorder]="0" allow="encrypted-media"></iframe>
 </div>
 </ion-content>
-<!-- -->
 <h2>Comments</h2>
 <div *ngFor="let comment of comments">
   <p id="comment"> {{ comment.username }}: {{ comment.description }}</p>

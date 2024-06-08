@@ -71,6 +71,8 @@ export class ApiService {
     window.location.href = authUrl.toString();
     const urlParams = new URLSearchParams(window.location.search);
     let code = urlParams.get('code');
+    this.getToken(code!);
+    console.log(code)
   }
 
   async getToken(code: string) {
