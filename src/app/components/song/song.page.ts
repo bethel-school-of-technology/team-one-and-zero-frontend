@@ -52,13 +52,14 @@ export class SongPage implements OnInit {
 
   createComment(){
     this.commentService.createComment(this.comment).subscribe(() => {
-      
+
     }, error => {
       console.log('Error:', error)
       if(error.status === 401){
         this.router.navigate(['login'])
       }
     })
+    
     window.location.reload()
   }
 
