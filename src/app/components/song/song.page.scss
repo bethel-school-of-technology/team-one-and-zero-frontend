@@ -1,13 +1,3 @@
-// ion-icon{
-//     font-size: 30px;
-//     padding: 10px;
-// }
-img{
-    border-radius: 20px;
-    padding: 10px;
-    width: fit-content;
-  }
-
 ion-footer{
     ion-toolbar{
         padding: 0 3px;
@@ -23,12 +13,8 @@ ion-footer{
     padding: 7px;
 }
 
-#comment {
-    text-align: center;
-    size: 15px;
-    padding: 2px;
-    margin-top: auto;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: auto;
+@media(max-width:576px) {
+    .profileButton {
+        width: 100%;
+    }
 }

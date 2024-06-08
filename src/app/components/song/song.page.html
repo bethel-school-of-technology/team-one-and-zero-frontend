@@ -16,10 +16,10 @@
             <ion-grid>
               <ion-row>
                 <ion-col size="3">
-                  <ion-button routerLink="/profile/{{c.username}}" color="darkblue">
-                    <ion-icon name="person-outline"></ion-icon>
-                    {{c.username}}
-                  </ion-button>
+                    <ion-button routerLink="/profile/{{c.username}}" color="darkblue" class="profileButton">
+                      <ion-icon slot="start" name="person-outline"></ion-icon>
+                      {{c.username}}
+                    </ion-button>
                 </ion-col>
                 <ion-col size="7">
                   <p>{{c.description}}</p>
@@ -39,42 +39,29 @@
       </ion-col>
     </ion-row>    
   </ion-grid>
-
-  <ion-toolbar>
-    <form #form="ngForm" (ngSubmit)="createComment()">
-      <ion-input autoGrow rows="1" placeholder="What do you think of this song?" name="description"[(ngModel)]="comment.description">
-      </ion-input>
-      <input [hidden]="true"  type="text" name="username" [(ngModel)]="comment.username">
-      <input [hidden]="true"  type="text" name="songId" [(ngModel)]="comment.songId">
-      <ion-buttons slot="end">
-        <ion-fab-button size="small">
-          <ion-icon name="send-outline"></ion-icon>
-        </ion-fab-button>
-      </ion-buttons>
-    </form>
-  </ion-toolbar>
 </ion-content>
 
 
-<!-- <ion-footer> -->
-  <!-- <ion-toolbar>
-    <form #form="ngForm" (ngSubmit)="createComment()">
-      <ion-input autoGrow rows="1" placeholder="What do you think of this song?" [(ngModel)]="comment.description"></ion-input>
-      <input [hidden]="true"  type="text" name="username" [(ngModel)]="comment.username">
-      <input [hidden]="true"  type="text" name="songId" [(ngModel)]="comment.songId">
-      <ion-buttons slot="end">
-        <ion-fab-button size="small">
-          <ion-icon name="send-outline"></ion-icon>
-        </ion-fab-button>
-      </ion-buttons>
-    </form>
-  </ion-toolbar> -->
-  
-  <!-- <form #form="ngForm" (ngSubmit)="createComment()">
-    <input placeholder="What do you think of the song" type="text" name="description" [(ngModel)]="comment.description">
-    <input [hidden]="true"  type="text" name="username" [(ngModel)]="comment.username">
-    <input [hidden]="true"  type="text" name="songId" [(ngModel)]="comment.songId">
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <form #form="ngForm" (ngSubmit)="createComment()">
+        <ion-row>
+          <ion-col size="10" size-md="11">
+            <ion-input placeholder="What do you think of this song?" name="description"[(ngModel)]="comment.description"></ion-input>
+          </ion-col>
 
-    <ion-button type="submit">Post</ion-button>
-  </form> -->
-<!-- </ion-footer> -->
+          <input [hidden]="true"  type="text" name="username" [(ngModel)]="comment.username">
+  
+          <input [hidden]="true"  type="text" name="songId" [(ngModel)]="comment.songId">
+          
+          <ion-col size="2" size-md="1">
+            <ion-button type="submit">
+              <ion-icon slot="icon-only" name="send-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
