@@ -20,14 +20,22 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit(): void {
-   if(this.tokenExpired(this.accessToken!)){
-    window.alert('Please click on the Refresh Access button to continue :)')
-   }
+  //  this.tokenExpired(this.code!);
   }
 
-  tokenExpired(token: string){
-    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
-    return (Math.floor((new Date).getTime() / 1000)) >= expiry;
+  tokenExpired(token: string | null | undefined){
+    if(!token){
+      window.alert("please click on the refresh access button to continue")
+      return true;
+    }
+    try{
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const expiry = payload.exp;
+      return Math.floor((new Date).getTime() / 3600) >= expiry;
+    }catch(error){
+      console.error("Error parsing or decoding token:", error);
+        return true; 
+    }
   }
 
   saveToken() {

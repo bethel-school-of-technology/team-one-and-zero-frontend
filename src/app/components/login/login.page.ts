@@ -34,7 +34,8 @@ export class LoginPage implements OnInit {
   }
 
   loginSpotify(){
-    this.apiService.generateRandomString();
+    this.apiService.generateRandomString()
+    // .then(window.alert("Click on the get access button")!);
   }
 
 }
