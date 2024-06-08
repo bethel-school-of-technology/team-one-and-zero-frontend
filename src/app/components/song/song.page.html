@@ -42,7 +42,7 @@
 
   <ion-toolbar>
     <form #form="ngForm" (ngSubmit)="createComment()">
-      <ion-input autoGrow rows="1" placeholder="What do you think of this song?" [(ngModel)]="comment.description">
+      <ion-input autoGrow rows="1" placeholder="What do you think of this song?" name="description"[(ngModel)]="comment.description">
       </ion-input>
       <input [hidden]="true"  type="text" name="username" [(ngModel)]="comment.username">
       <input [hidden]="true"  type="text" name="songId" [(ngModel)]="comment.songId">
