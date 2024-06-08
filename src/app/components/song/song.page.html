@@ -3,51 +3,78 @@
 </ion-toolbar>
 
 <ion-content [scrollEvents]="true">
-<!-- <div ></div> -->
-<div  *ngIf="spotifyUrl" id="songInfo">
-<iframe [src]="spotifyUrl" width="100%" height="352" allowfullscreen [frameBorder]="0" allow="encrypted-media"></iframe>
-</div>
-</ion-content>
-<!-- -->
-<h2>Comments</h2>
-<div *ngFor="let comment of comments">
-  <p id="comment"> {{ comment.username }}: {{ comment.description }}</p>
-  <ion-button routerLink="/profile/{{comment.username}}" color="darkblue">
-    <ion-icon name="person-outline"></ion-icon>
-  </ion-button>
-  <div *ngIf="comment.username == currentUser.username">
-    <!-- <ion-button (click)="prompt(comment)">Edit</ion-button>
-    <ion-button (click)="deleteComment(comment.commentID!)">Delete</ion-button> -->
-    <!-- <ion-button (click)="prompt(comment)">Edit</ion-button>
-    <ion-button (click)="deleteComment(comment.commentID!)">Delete</ion-button> -->
-
-    <ion-button (click)="prompt(comment)" color="secondary">
-      <ion-icon slot="icon-only" name="create-outline"></ion-icon>
-    </ion-button>
-    <ion-button (click)="deleteComment(comment.commentID!)" color="danger">
-      <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-    </ion-button>
-
-
+  <div  *ngIf="spotifyUrl" id="songInfo">
+  <iframe [src]="spotifyUrl" width="100%" height="352" allowfullscreen [frameBorder]="0" allow="encrypted-media"></iframe>
   </div>
-</div>
 
-<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h1>Comments</h1>
+        <ion-list>
+          <ion-item *ngFor="let c of comments">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="3">
+                  <ion-button routerLink="/profile/{{c.username}}" color="darkblue">
+                    <ion-icon name="person-outline"></ion-icon>
+                    {{c.username}}
+                  </ion-button>
+                </ion-col>
+                <ion-col size="7">
+                  <p>{{c.description}}</p>
+                </ion-col>
+                <ion-col size="2" *ngIf="c.username == currentUser.username" class="ion-text-center">
+                  <ion-button (click)="prompt(c)" color="secondary">
+                    <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+                  </ion-button>
+                  <ion-button (click)="deleteComment(c.commentID!)" color="danger">
+                    <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>    
+  </ion-grid>
+
+  <ion-toolbar>
+    <form #form="ngForm" (ngSubmit)="createComment()">
+      <ion-input autoGrow rows="1" placeholder="What do you think of this song?" [(ngModel)]="comment.description">
+      </ion-input>
+      <input [hidden]="true"  type="text" name="username" [(ngModel)]="comment.username">
+      <input [hidden]="true"  type="text" name="songId" [(ngModel)]="comment.songId">
+      <ion-buttons slot="end">
+        <ion-fab-button size="small">
+          <ion-icon name="send-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-buttons>
+    </form>
+  </ion-toolbar>
+</ion-content>
+
+
+<!-- <ion-footer> -->
   <!-- <ion-toolbar>
-    <ion-input autoGrow rows="1" placeholder="What do you think of this song?" class="ion-text-center" [(ngModel)]="comment.description">
-    </ion-input>
-    <ion-buttons slot="end">
-      <ion-fab-button size="small" (ngSubmit)="createComment()">
-        <ion-icon name="send-outline"></ion-icon>
-      </ion-fab-button>
-    </ion-buttons>
+    <form #form="ngForm" (ngSubmit)="createComment()">
+      <ion-input autoGrow rows="1" placeholder="What do you think of this song?" [(ngModel)]="comment.description"></ion-input>
+      <input [hidden]="true"  type="text" name="username" [(ngModel)]="comment.username">
+      <input [hidden]="true"  type="text" name="songId" [(ngModel)]="comment.songId">
+      <ion-buttons slot="end">
+        <ion-fab-button size="small">
+          <ion-icon name="send-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-buttons>
+    </form>
   </ion-toolbar> -->
-
-  <form #form="ngForm" (ngSubmit)="createComment()">
+  
+  <!-- <form #form="ngForm" (ngSubmit)="createComment()">
     <input placeholder="What do you think of the song" type="text" name="description" [(ngModel)]="comment.description">
     <input [hidden]="true"  type="text" name="username" [(ngModel)]="comment.username">
     <input [hidden]="true"  type="text" name="songId" [(ngModel)]="comment.songId">
 
     <ion-button type="submit">Post</ion-button>
-  </form>
-</ion-footer>
+  </form> -->
+<!-- </ion-footer> -->
