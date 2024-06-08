@@ -11,7 +11,10 @@
 <!-- -->
 <h2>Comments</h2>
 <div *ngFor="let comment of comments">
-  <p> {{ comment.username }}: {{ comment.description }}</p>
+  <p id="comment"> {{ comment.username }}: {{ comment.description }}</p>
+  <ion-button routerLink="/profile/{{comment.username}}" color="darkblue">
+    <ion-icon name="person-outline"></ion-icon>
+  </ion-button>
   <div *ngIf="comment.username == currentUser.username">
     <!-- <ion-button (click)="prompt(comment)">Edit</ion-button>
     <ion-button (click)="deleteComment(comment.commentID!)">Delete</ion-button> -->
@@ -31,20 +34,23 @@
 
 <ion-footer>
   <!-- <ion-toolbar>
-    <ion-input autoGrow rows="1" placeholder="What do you think of this song?" class="ion-text-center" [(ngModel)]="comment.description">
-    </ion-input>
-    <ion-buttons slot="end">
-      <ion-fab-button size="small" (ngSubmit)="createComment()">
-        <ion-icon name="send-outline"></ion-icon>
-      </ion-fab-button>
-    </ion-buttons>
+    <form #form="ngForm" (ngSubmit)="createComment()">
+      <ion-input autoGrow rows="1" placeholder="What do you think of this song?" [(ngModel)]="comment.description"></ion-input>
+      <input [hidden]="true"  type="text" name="username" [(ngModel)]="comment.username">
+      <input [hidden]="true"  type="text" name="songId" [(ngModel)]="comment.songId">
+      <ion-buttons slot="end">
+        <ion-fab-button size="small">
+          <ion-icon name="send-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-buttons>
+    </form>
   </ion-toolbar> -->
-
-  <form #form="ngForm" (ngSubmit)="createComment()">
+  
+  <!-- <form #form="ngForm" (ngSubmit)="createComment()">
     <input placeholder="What do you think of the song" type="text" name="description" [(ngModel)]="comment.description">
     <input [hidden]="true"  type="text" name="username" [(ngModel)]="comment.username">
     <input [hidden]="true"  type="text" name="songId" [(ngModel)]="comment.songId">
 
     <ion-button type="submit">Post</ion-button>
-  </form>
-</ion-footer>
+  </form> -->
+<!-- </ion-footer> -->
