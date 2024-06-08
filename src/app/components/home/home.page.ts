@@ -20,6 +20,14 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit(): void {
+   if(this.tokenExpired(this.accessToken!)){
+    window.alert('Please click on the Refresh Access button to continue :)')
+   }
+  }
+
+  tokenExpired(token: string){
+    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+    return (Math.floor((new Date).getTime() / 1000)) >= expiry;
   }
 
   saveToken() {
@@ -43,10 +51,10 @@ export class HomePage implements OnInit {
     return url.search ? url.href : url.href.replace('?', '');
   }
 
-  loginWithSpotify() {
-    this.api.generateRandomString()
+  // loginWithSpotify() {
+  //   this.api.generateRandomString()
 
-  }
+  // }
 
   getToken() {
     this.api.getToken(this.code!);

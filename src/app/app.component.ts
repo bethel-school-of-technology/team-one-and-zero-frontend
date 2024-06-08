@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from './services/user.service';
 import { User } from './models/user';
 import { Router } from '@angular/router';
+import { ApiService } from './services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,12 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit{
 
   user: User = new User;
-
+  urlParams = new URLSearchParams(window.location.search);
+  code = this.urlParams.get('code');
   isAuthenticated: boolean = false;
   loggedIn: boolean = false;
 
-  constructor(private myUserService: UserService, private router: Router) {}
+  constructor(private myUserService: UserService, private router: Router, private api: ApiService) {}
 
   ngOnInit(): void {
     this.myUserService.getCurrentUser().subscribe(response => {
@@ -45,5 +47,14 @@ export class AppComponent implements OnInit{
     this.router.navigate(['/login']);
   
   }
+
+  getToken() {
+    this.api.getToken(this.code!);
+  }
+
+  refreshToken() {
+    this.api.refreshToken()
+  }
+
 
 }

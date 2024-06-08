@@ -26,10 +26,15 @@ export class LoginPage implements OnInit {
       window.alert("Successful")
       this.router.navigate(['/home']);
       this.loggedIn = true;
+      this.loginSpotify()
     }, error => {
-      console.log('Error: ', error),
-        window.alert('Unsuccessful Login');
+      console.log('Error: ', error)
+      window.alert('Unsuccessful Login');
     })
+  }
+
+  loginSpotify(){
+    this.apiService.generateRandomString();
   }
 
 }
