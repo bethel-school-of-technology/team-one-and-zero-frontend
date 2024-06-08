@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
-import { Observable, of, tap } from 'rxjs';
+import { Observable, Subject, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -11,6 +11,9 @@ export class UserService {
   baseURL: string = "http://localhost:5167/api/user";
   tokenKey: string = "myCommentToken";
   logged: boolean = false;
+
+  public isLoggedInSubj = new Subject<boolean>();
+
   constructor(private http: HttpClient, private router: Router) { }
 
   signUp(newUser: User) {
@@ -25,6 +28,7 @@ export class UserService {
     return this.http.get(`${this.baseURL}/login`, { params: queryParams, responseType: 'text' })
       .pipe(tap((response: any) => {
         localStorage.setItem('myCommentToken', response);
+        this.isLoggedInSubj.next(true);
       }));
   }
 
@@ -44,18 +48,5 @@ export class UserService {
     return this.http.get<User>(`${this.baseURL}/${username}`);
   }
 
-  isLoggedIn() {
-    if (localStorage.getItem('myCommentToken')) {
-      this.logged = true;
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  logout(){
-    localStorage.removeItem('myCommentToken')
-    this.router.navigate(['/home'])
-  }
 }
 

@@ -28,10 +28,8 @@ export class LoginPage implements OnInit {
       this.loggedIn = true;
     }, error => {
       console.log('Error: ', error),
-        window.alert('Unsuccessful Login'); // May change this to a prompt
+        window.alert('Unsuccessful Login');
     })
-    // await this.apiService.generateRandomString()
-    // this.apiService.getToken(this.code!);
   }
 
 }
