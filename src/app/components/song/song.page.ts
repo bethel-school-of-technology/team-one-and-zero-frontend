@@ -34,7 +34,6 @@ export class SongPage implements OnInit {
     this.currentUserAndId()
     this.callComments()
     this.getSongId()
-      console.log(this.trackID);
   }
 
   getSongId(){
@@ -45,7 +44,6 @@ export class SongPage implements OnInit {
   currentUserAndId(){
     this.user.getCurrentUser().subscribe(response => {
       this.comment.username = response.username;
-      console.log(response.username)
     })
     
   }
@@ -71,14 +69,13 @@ export class SongPage implements OnInit {
 
   editComment(comment: Comment) {
     this.commentService.updateComment(comment).subscribe(() => {
-      console.log(comment);
       this.callComments();
     })
   }
 
   deleteComment(id: number) {
     this.commentService.deleteComment(id).subscribe(() => {
-      console.log("The comment has been deleted");
+      window.alert("The comment has been deleted");
       this.callComments();
     })
   }

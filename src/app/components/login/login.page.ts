@@ -23,19 +23,19 @@ export class LoginPage implements OnInit {
 
   onSubmit() {
     this.myUserService.login(this.username, this.password).subscribe((response: any) => {
-      window.alert("Successful")
+      window.alert("Successful! Make sure to click on the 'Get Access after Log In' button found in the menu");
       this.router.navigate(['/home']);
-      this.loggedIn = true;
-      this.loginSpotify()
+      this.loggedIn = true;   
+      this.loginSpotify();
     }, error => {
-      console.log('Error: ', error)
+      console.log('Error: ', error);
       window.alert('Unsuccessful Login');
-    })
+    });    
   }
+  
 
   loginSpotify(){
     this.apiService.generateRandomString()
-    // .then(window.alert("Click on the get access button")!);
   }
 
 }

@@ -27,11 +27,8 @@ export class ProfilePage implements OnInit {
     this.myUserService.getCurrentUser().subscribe(response => {
       this.loggedInUser = this.presentUser = response;
       this.userName = this.presentUser.username ?? '';
-      console.log(this.loggedInUser);
-      console.log(this.presentUser);
 
       const name = this.actRouter.snapshot.paramMap.get("username") ?? '';
-      console.log(name);
   
       if (name !== '') {
         this.userName = name;
@@ -55,14 +52,13 @@ export class ProfilePage implements OnInit {
 
   editComment(comment: Comment) {
     this.myCommentService.updateComment(comment).subscribe(() => {
-      console.log(comment);
       this.loadUserComments();
     })
   }
 
   deleteComment(id: number) {
     this.myCommentService.deleteComment(id).subscribe(() => {
-      console.log("The comment has been deleted");
+      window.alert("The comment has been deleted");
       this.loadUserComments();
     })
   }

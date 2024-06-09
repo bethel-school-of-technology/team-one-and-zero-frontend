@@ -11,8 +11,6 @@ export class ApiService {
   clientId = '63e7847d41474394a5d392f60af109b0';
   redirectUri = 'http://localhost:8100/home';
   scope = 'user-read-private user-read-email';
-  // genresArr: any = [];
-  songsArr: any = [];
   authUrl = new URL("https://accounts.spotify.com/authorize")
   tokenUrl = new URL("https://accounts.spotify.com/api/token")
   public apiKey: string = '4aawyAB9vmqN3uQ7FjRGTy';
@@ -69,9 +67,6 @@ export class ApiService {
 
     authUrl.search = new URLSearchParams(params).toString();
     window.location.href = authUrl.toString();
-    const urlParams = new URLSearchParams(window.location.search);
-    let code = urlParams.get('code');
-    // window.alert("Click on the get access button")
   }
 
   async getToken(code: string) {
@@ -94,17 +89,6 @@ export class ApiService {
     console.log(response)
     localStorage.setItem('access_token', response.access_token);
     localStorage.setItem('refresh_token', response.refresh_token);
-  }
-
-  async fetchProfile(token: string): Promise<any> {
-    const freshToken = localStorage.getItem('access_token');
-    const result = await fetch("https://api.spotify.com/v1/me", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${freshToken}`
-      }
-    });
-    return await result.json();
   }
 
   async refreshToken() {
