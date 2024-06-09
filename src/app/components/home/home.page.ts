@@ -20,22 +20,6 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit(): void {
-  //  this.tokenExpired(this.code!);
-  }
-
-  tokenExpired(token: string | null | undefined){
-    if(!token){
-      window.alert("please click on the refresh access button to continue")
-      return true;
-    }
-    try{
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      const expiry = payload.exp;
-      return Math.floor((new Date).getTime() / 3600) >= expiry;
-    }catch(error){
-      console.error("Error parsing or decoding token:", error);
-        return true; 
-    }
   }
 
   saveToken() {
@@ -59,17 +43,12 @@ export class HomePage implements OnInit {
     return url.search ? url.href : url.href.replace('?', '');
   }
 
-  // loginWithSpotify() {
-  //   this.api.generateRandomString()
-
-  // }
-
   getToken() {
     this.api.getToken(this.code!);
   }
 
   searchTracks() {
-    let songs = this.searchTrack(this.accessToken!, this.searchStr)
+    this.searchTrack(this.searchStr)
     this.searched = true;
   }
 
@@ -78,11 +57,7 @@ export class HomePage implements OnInit {
     this.router.navigate(['/song/', songID])
   }
 
-  refreshToken() {
-    this.api.refreshToken()
-  }
-
-  async searchTrack(token: string, item: string): Promise<any> {
+  async searchTrack(item: string): Promise<any> {
     const freshToken = localStorage.getItem('access_token');
     const result = await fetch("https://api.spotify.com/v1/search?q=" + item + "&type=track&limit=10", {
       method: "GET",
@@ -91,8 +66,9 @@ export class HomePage implements OnInit {
       }
     });
     if(result.status == 401){
-      window.alert("Please log in with Spotify")
+      window.alert("Please log in again")
     }
+    
     let track = await result.json();
     this.songsArr = track.tracks.items;
     console.log(this.songsArr)
